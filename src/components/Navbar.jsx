@@ -1,105 +1,111 @@
-import * as React from "react";
+import React from "react";
 import {
-  AppBar,
-  Box,
-  CssBaseline,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Toolbar,
+  Navbar,
+  MobileNav,
   Typography,
   Button,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+  IconButton,
+  Card,
+} from "@material-tailwind/react";
+import { NavLinks } from "./NavLinks";
+import { Link } from "react-router-dom";
 
-const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+export default function Example() {
+  const [openNav, setOpenNav] = React.useState(false);
 
-function Navbar(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
+  }, []);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+  const navList = (
+    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      {NavLinks.map((link) => {
+        return (
+          <Link to={link.route}>
+            <Typography
+              key={link.id}
+              as="li"
+              variant="small"
+              color="blue-gray"
+              className="p-1 font-normal text-black"
+            >
+              <span className="flex items-center">{link.link}</span>
+            </Typography>
+          </Link>
+        );
+      })}
+    </ul>
   );
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
+    <>
+      <Navbar className="sticky inset-0 z-10 h-max max-w-full shadow-lg rounded-none py-2 px-4 lg:px-8 lg:py-4">
+        <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            as="a"
+            href="/"
+            className="mr-4 cursor-pointer py-1.5 font-medium"
           >
-            MUI
+            Material Tailwind
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box component="nav">
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-    </Box>
+          <div className="flex items-center gap-4">
+            <div className="mr-4 hidden lg:block">{navList}</div>
+            <Button
+              variant="gradient"
+              size="sm"
+              className="hidden lg:inline-block"
+            >
+              <span>Buy Now</span>
+            </Button>
+            <IconButton
+              variant="text"
+              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              ripple={false}
+              onClick={() => setOpenNav(!openNav)}
+            >
+              {openNav ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </IconButton>
+          </div>
+        </div>
+        <MobileNav open={openNav}>
+          {navList}
+          <Button variant="gradient" size="sm" fullWidth className="mb-2">
+            <span>Buy Now</span>
+          </Button>
+        </MobileNav>
+      </Navbar>
+    </>
   );
 }
-
-export default Navbar;

@@ -1,8 +1,29 @@
 import { ActionType } from "../constants/actionTypes";
 
-export const setProduct = (products) => {
+export const setProductElectronics = (products) => {
   return {
-    type: ActionType.SET_PRODUCTS,
+    type: ActionType.SET_PRODUCTS_ELECTRONICS,
+    payload: products,
+  };
+};
+
+export const setProductsJewelery = (products) => {
+  return {
+    type: ActionType.SET_PRODUCTS_JEWELERY,
+    payload: products,
+  };
+};
+
+export const setProductsMensClothing = (products) => {
+  return {
+    type: ActionType.SET_PRODUCTS_MENS_CLOTHING,
+    payload: products,
+  };
+};
+
+export const setProductsWomensClothing = (products) => {
+  return {
+    type: ActionType.SET_PRODUCTS_WOMENS_CLOTHING,
     payload: products,
   };
 };
