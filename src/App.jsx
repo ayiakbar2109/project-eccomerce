@@ -6,6 +6,7 @@ import HomeIndex from "./pages/home/HomeIndex";
 import JewelryIndex from "./pages/jewelry/JewelryIndex";
 import MensClothingIndex from "./pages/mens-clothing/MensClothingIndex";
 import WomensClothingIndex from "./pages/womens-clothing/WomensClothingIndex";
+import ProductDetails from "./components/ProductDetails";
 function App() {
   return (
     <Routers>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/jewelry" element={<JewelryIndex />}></Route>
         <Route path="/men's" element={<MensClothingIndex />}></Route>
         <Route path="/womensclothing" element={<WomensClothingIndex />}></Route>
+        <Route path="/product/:productId" element={<ProductDetails />}></Route>
       </Routes>
     </Routers>
   );

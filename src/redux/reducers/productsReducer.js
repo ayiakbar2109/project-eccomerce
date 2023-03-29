@@ -18,3 +18,17 @@ export const productsReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export const selectedProductReducer = (
+  state = initialState,
+  { type, payload }
+) => {
+  switch (type) {
+    case ActionType.SELECTED_PRODUCT:
+      return { ...state, ...payload };
+    case ActionType.REMOVE_SELECTED_PRODUCT:
+      return {};
+    default:
+      return state;
+  }
+};
