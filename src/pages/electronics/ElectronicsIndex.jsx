@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { setProductElectronics } from "./../../redux/actions/productsAction";
+import {
+  removeSelectedProduct,
+  setProductElectronics,
+} from "./../../redux/actions/productsAction";
 import { useSelector, useDispatch } from "react-redux";
-
-import ElectronicComponent from "./ElectronicComponent";
+import ProductsComponent from "../../components/ProductsComponent";
 
 const ElectronicsIndex = () => {
   const getProductsElectronics = useSelector(
@@ -22,9 +24,10 @@ const ElectronicsIndex = () => {
 
   useEffect(() => {
     fetchProducts();
+    dispatch(removeSelectedProduct());
   }, []);
 
-  return <ElectronicComponent />;
+  return <ProductsComponent />;
 };
 
 export default ElectronicsIndex;

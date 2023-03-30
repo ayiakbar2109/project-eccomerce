@@ -7,16 +7,16 @@ export const NavLinks = [
   {
     id: 2,
     link: "Jewelry",
-    route: "/jewelry",
+    route: "/jewelery",
   },
   {
     id: 3,
     link: "Men's Clothing",
-    route: "/men's",
+    route: "/men's clothing",
   },
   {
     id: 4,
     link: "Women's Clothing",
-    route: "/womensclothing",
+    route: "/women's clothing",
   },
 ];

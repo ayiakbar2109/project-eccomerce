@@ -46,7 +46,7 @@ export default function Example() {
         <div className="flex items-center justify-between text-blue-800">
           <Typography
             as="a"
-            href="#"
+            href="/"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             Material Tailwind
