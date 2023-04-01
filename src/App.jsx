@@ -7,6 +7,7 @@ import JewelryIndex from "./pages/jewelry/JewelryIndex";
 import MensClothingIndex from "./pages/mens-clothing/MensClothingIndex";
 import WomensClothingIndex from "./pages/womens-clothing/WomensClothingIndex";
 import ProductDetails from "./components/ProductDetails";
+import CartIndex from "./pages/cart/CartIndex";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomeIndex />}></Route>
+        <Route path="/cart" element={<CartIndex />}></Route>
         <Route path="/electronics" element={<ElectronicsIndex />}></Route>
         <Route path="/jewelery" element={<JewelryIndex />}></Route>
         <Route path="/men's clothing" element={<MensClothingIndex />}></Route>

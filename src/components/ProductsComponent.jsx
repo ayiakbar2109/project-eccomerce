@@ -9,10 +9,10 @@ const ProductsComponent = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-  const renderList = getProduct.map((product) => {
+  const renderList = getProduct.map((product, index) => {
     return (
       <Link
-        key={product.id}
+        key={index}
         to={`/${product.category}/${product.id}`}
         className="border-solid border-1 border-r-gray-200 py-11 px-7"
       >
@@ -58,7 +58,7 @@ const ProductsComponent = () => {
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-2xl py-10 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="grid border-t-gray-200 border-l-gray-200 border-b-gray-200 border-solid border-1 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+        <div className="grid border-t-gray-200 border-l-gray-200 border-b-gray-200 border-solid border-1 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {renderList}
         </div>
       </div>

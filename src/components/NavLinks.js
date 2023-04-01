@@ -1,21 +1,21 @@
 export const NavLinks = [
   {
-    id: 1,
+    id: 0,
     link: "Electronics",
     route: "/electronics",
   },
   {
-    id: 2,
+    id: 1,
     link: "Jewelry",
     route: "/jewelery",
   },
   {
-    id: 3,
+    id: 2,
     link: "Men's Clothing",
     route: "/men's clothing",
   },
   {
-    id: 4,
+    id: 3,
     link: "Women's Clothing",
     route: "/women's clothing",
   },

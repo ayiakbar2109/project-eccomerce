@@ -6,6 +6,7 @@ import {
   selectedProduct,
   removeSelectedProduct,
 } from "./../redux/actions/productsAction";
+import { addToCart } from "./../redux/actions/addToCartAction";
 import { Link } from "react-router-dom";
 import {
   StarIcon,
@@ -17,8 +18,8 @@ import LoadingAnimation from "./LoadingAnimation";
 
 const ProductDetails = () => {
   const { productId } = useParams();
-  const productDetails = useSelector((state) => state.product);
-  const { image, title, price, category, description, rating } = productDetails;
+  const item = useSelector((state) => state.product);
+  const { image, title, price, category, description, rating } = item;
   const dispatch = useDispatch();
 
   // GET API DATA
@@ -43,11 +44,12 @@ const ProductDetails = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+  item.quantity = 1;
 
   return (
     <main className="bg-white">
       <div className="">
-        {Object.keys(productDetails).length === 0 ? (
+        {Object.keys(item).length === 0 ? (
           <LoadingAnimation />
         ) : (
           <div className="mx-2 p-6">
@@ -129,7 +131,8 @@ const ProductDetails = () => {
                 {/* Button add to cart */}
                 <Button
                   variant="filled"
-                  className="flex text-gray-900 mt-6 font-bold items-center text-lg gap-3 bg-gray-200 w-full justify-center py-3 shadow-gray-400"
+                  onClick={() => dispatch(addToCart(item))}
+                  className="flex text-gray-900 mt-6 font-bold items-center text-lg gap-3 bg-gray-100 w-full justify-center py-3 shadow-md"
                 >
                   <ShoppingCartIcon strokeWidth={1} className="h-6 w-6" /> Add
                   to Cart
@@ -142,5 +145,7 @@ const ProductDetails = () => {
     </main>
   );
 };
+
+console.log(Button);
 
 export default ProductDetails;
